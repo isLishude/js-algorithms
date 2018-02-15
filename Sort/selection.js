@@ -1,6 +1,7 @@
-const fn = require("./fn")
+const fn = require("../fn")
 
 function selectionSort(arr) {
+    console.log(arr)
     const len = arr.length
     for (let i = 0; i < len; i++) {
         let minIndex = i;
@@ -14,4 +15,4 @@ function selectionSort(arr) {
     console.log(arr)
 }
 
-selectionSort(fn.getArray())
+selectionSort(fn.getArray(10,10))
