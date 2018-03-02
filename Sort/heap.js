@@ -1,9 +1,7 @@
 const fn = require("../fn")
 
-function shiftDown(arr, pos) {
-    const len = arr.length;
-    // console.log("shiftDown")
-    while (pos * 2 + 1 < arr.length) {
+function shiftDown(arr, pos, len = arr.length) {
+    while (pos * 2 + 1 < len) {
         let j = 2 * pos + 1;
         if (j + 1 < len && arr[j] < arr[j + 1]) j++;
         if (arr[pos] >= arr[j]) break;
@@ -12,17 +10,7 @@ function shiftDown(arr, pos) {
     }
 }
 
-function extrac(arr) {
-    let res = arr[0];
-    let len = arr.length;
-    arr[0] = arr[len - 1];
-    arr.pop();
-    shiftDown(arr, 0);
-    return res;
-}
-
-function heapSort(arr) {
-    let len = arr.length
+function heapSort(arr, len = arr.length) {
     console.log(arr)
     for (let i = Math.floor((len - 2) / 2); i >= 0; i--) {
         shiftDown(arr, i)
@@ -30,9 +18,10 @@ function heapSort(arr) {
 
     for (let i = len - 1; i > 0; i--) {
         fn.swap(arr, 0, i)
-        shiftDown(arr, 0)
+        shiftDown(arr, 0, i)
     }
-    console.log(arr)
+    fn.test(arr)
+    return arr
 }
 
-heapSort(fn.getArray(10, 10))
+heapSort(fn.getArray(10, 100))
