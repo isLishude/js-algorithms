@@ -57,28 +57,49 @@ function quickSort2(arr) {
         // return j
 
         // 二路快排
-        let li = left + 1;
-        let ri = right;
-        let p = arr[left];
-        while (true) {
-            while (li <= right && arr[li] < p) li++;
-            while (ri >= left + 1 && arr[ri] > p) ri--;
-            if (li > ri) break;
-            fn.swap(arr, li, ri)
-            li++;
-            ri--;
+        // let li = left + 1;
+        // let ri = right;
+        // let p = arr[left];
+        // while (true) {
+        //     while (li <= right && arr[li] < p) li++;
+        //     while (ri >= left + 1 && arr[ri] > p) ri--;
+        //     if (li > ri) break;
+        //     fn.swap(arr, li, ri)
+        //     li++;
+        //     ri--;
+        // }
+
+        // fn.swap(arr, left, ri)
+        // return ri
+
+        let p = arr[left]
+        let lt = left;
+        let gt = right + 1;
+        let i = left + 1;
+
+        while (i < gt) {
+            if (arr[i] < p) {
+                fn.swap(arr, i++, ++lt);
+            } else if (arr[i] > p) {
+                fn.swap(arr, i, --gt);
+            } else {
+                i++;
+            }
         }
 
-        fn.swap(arr, left, ri)
-        return ri
+        fn.swap(arr, left, lt);
+        return {
+            lt,
+            gt
+        }
     }
 
     function __quickSort(arr, left = 0, right = arr.length - 1) {
         if (left >= right) return;
         let p = partition(arr, left, right);
 
-        __quickSort(arr, left, p - 1)
-        __quickSort(arr, p + 1, right)
+        __quickSort(arr, left, p.lt - 1)
+        __quickSort(arr, p.gt, right)
     }
 
     __quickSort(arr)
