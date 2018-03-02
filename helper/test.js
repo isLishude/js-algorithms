@@ -4,7 +4,6 @@ function test(arr) {
     for (let i = 0; i < len; i++) {
         if (i != len - 1 && arr[i + 1] < arr[i]) {
             console.log("测试失败！")
-            console.log(arr[i], arr[i + 1])
             return false
         }
     }
