@@ -2,13 +2,15 @@ const fn = require("../fn")
 
 function shiftDown(arr, pos, len = arr.length) {
     // max heap shift down
+    let x = arr[pos]
     while (pos * 2 + 1 < len) {
         let j = 2 * pos + 1;
         if (j + 1 < len && arr[j] < arr[j + 1]) j++;
-        if (arr[pos] >= arr[j]) break;
-        fn.swap(arr, pos, j)
+        if (x >= arr[j]) break;
+        arr[pos] = arr[j]
         pos = j;
     }
+    arr[pos] = x;
 }
 
 function heapSort(arr, len = arr.length) {
